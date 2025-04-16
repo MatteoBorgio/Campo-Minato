@@ -1,6 +1,6 @@
 import random as r
 
-def genera_griglia(dimensione):
+def genera_griglia(dimensione: int) -> list[list]:
     """
     Genera una griglia di gioco con mine posizionate casualmente.
 
@@ -18,7 +18,7 @@ def genera_griglia(dimensione):
         griglia.append(riga)
     return griglia
 
-def posiziona_mine(griglia, numero_mine):
+def posiziona_mine(griglia: list[list], numero_mine: int) -> None:
     """
     Posiziona le mine nella griglia di gioco.
 
@@ -32,7 +32,7 @@ def posiziona_mine(griglia, numero_mine):
             griglia[posizione_casuale[0]][posizione_casuale[1]] = "X"
             numero_mine -= 1
 
-def calcola_numeri(griglia):
+def calcola_numeri(griglia: list[list]) -> None:
     """
     Calcola il numero di mine adiacenti per ogni cella.
 
@@ -52,7 +52,7 @@ def calcola_numeri(griglia):
                         conteggio_mine += 1
                 griglia[i][j] = str(conteggio_mine)
 
-def rivela_cella(griglia, riga, colonna):
+def rivela_cella(griglia: list[list], riga: int, colonna: int) -> bool:
     """
     Rivela il contenuto di una cella.
 
@@ -69,7 +69,7 @@ def rivela_cella(griglia, riga, colonna):
     else:
         return False
 
-def visualizza_griglia(griglia, celle_rivelate):
+def visualizza_griglia(griglia: list[list], celle_rivelate: list[tuple]) -> None:
     """
     Visualizza la griglia di gioco.
 
@@ -85,7 +85,7 @@ def visualizza_griglia(griglia, celle_rivelate):
                 print("?", end=" ")
         print()
 
-def gioco_finito(griglia, celle_rivelate):
+def gioco_finito(griglia: list[list], celle_rivelate: list[tuple]) -> bool:
     """
     Verifica se il gioco è finito.
 
@@ -101,7 +101,7 @@ def gioco_finito(griglia, celle_rivelate):
             if griglia[i][j] != "X" and (i, j) not in celle_rivelate:
                 return False
     return True
-def main():
+def main() -> None:
     """
     Funzione principale del programma.
     """
@@ -149,7 +149,6 @@ def main():
 
     visualizza_griglia(griglia, set((i, j) for i in range(dimensione) for j in range(dimensione)))
     print("\nHai rivelato tutte le celle senza colpire una mina! Hai vinto!")
-
     return 
 
 if __name__ == "__main__":
